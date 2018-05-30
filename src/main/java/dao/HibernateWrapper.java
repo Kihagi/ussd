@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public abstract class HibernateWrapper {
 
-    private static final String CONNECTION_URL = "jdbc:postgresql://ec2-54-204-46-236.compute-1.amazonaws.com:5432/d624mc20cgh1rh";
+    private static final String CONNECTION_URL = "jdbc:postgresql://ec2-54-204-46-236.compute-1.amazonaws.com:5432/d624mc20cgh1rh?sslmode=require";
 
     //private static final String CONNECTION_URL = System.getenv("JDBC_DATABASE_URL");
 

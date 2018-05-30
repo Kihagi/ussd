@@ -118,7 +118,7 @@ public class TestUssd {
                 response += "1. View Member details \n";
                 response += "2. Check my status \n";
                 response += "3. Pay via MPESA \n";
-                response += "3. View My Dependants \n";
+                response += "4. View My Dependants \n";
 
                 return Response.status(HttpStatus.SC_OK)
                         .entity(response).build();
@@ -131,14 +131,80 @@ public class TestUssd {
                         .entity(response).build();
             }
 
-        } else if (text.equalsIgnoreCase(prevText+"1")) {
+        } else if (text.equalsIgnoreCase(prevText+"*1")) {
             System.out.println("Text is ::: " + text);
 
             List<User> users1 = userByPhone(phoneNumber);
             if (!users1.isEmpty()) {
-                response = "END Name: " + users1.get(0).getNames() + "\n";
+                response = "CON Name: " + users1.get(0).getNames() + "\n";
                 response += "Phone Number: " + users1.get(0).getPhoneNumber() + "\n";
                 response += "ID Number: " + users1.get(0).getNationalId() + "\n";
+                response += "NHIF Number: 854321"+"\n";
+                response += "0. Go Back"+"\n";
+            } else {
+                response  = "END You are not registered";
+            }
+
+            return Response.status(HttpStatus.SC_OK)
+                    .entity(response).build();
+        } else if (text.equalsIgnoreCase(prevText+"*2")) {
+            System.out.println("Text is ::: " + text);
+
+            List<User> users1 = userByPhone(phoneNumber);
+            if (!users1.isEmpty()) {
+                response = "CON Your Account is Active.\n";
+                response+= "Last payment date: 28/5/2018.\n";
+                response += "0. Go Back"+"\n";
+
+            } else {
+                response  = "END You are not registered";
+            }
+
+            return Response.status(HttpStatus.SC_OK)
+                    .entity(response).build();
+        } else if (text.equalsIgnoreCase(prevText+"*4")) {
+            System.out.println("Text is ::: " + text);
+
+            List<User> users1 = userByPhone(phoneNumber);
+            if (!users1.isEmpty()) {
+
+                response = "CON John Doe - Son\n";
+                response += "Jane Doe - Daughter \n";
+                response += "Janet Doe - Wife \n";
+                response += "0. Go Back"+"\n";
+
+            } else {
+                response  = "END You are not registered";
+            }
+
+            return Response.status(HttpStatus.SC_OK)
+                    .entity(response).build();
+        } else if (text.equalsIgnoreCase(prevText+"*3")) {
+            System.out.println("Text is ::: " + text);
+
+            List<User> users1 = userByPhone(phoneNumber);
+            if (!users1.isEmpty()) {
+                response = "CON You will receive a payment notification shortly.\n";
+                response += "0. Go Back"+"\n";
+
+            } else {
+                response  = "END You are not registered";
+            }
+
+            return Response.status(HttpStatus.SC_OK)
+                    .entity(response).build();
+        } else if (text.equalsIgnoreCase(prevText+"*0")) {
+            System.out.println("Text is ::: " + text);
+
+            List<User> users1 = userByPhone(phoneNumber);
+            if (!users1.isEmpty()) {
+
+                response = "CON What would you like to do? \n";
+                response += "1. View Member details \n";
+                response += "2. Check my status \n";
+                response += "3. Pay via MPESA \n";
+                response += "4. View My Dependants \n";
+
             } else {
                 response  = "END You are not registered";
             }
